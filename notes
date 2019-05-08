@@ -1,0 +1,14 @@
+1. Get choice text to be clickable - X
+2. Get Wincross test logic working
+   - Have tests change on click match the correct WC check qNumber
+   - Have bases be included - O
+   - Set ability to toggle between bases and previous questions
+   - Account for skips with bases or previous questions as suffixes
+   - Set question type (singlge/multi/CR etc) - X
+3. Display Wincross Checks next to each question
+4. Have wincross checks adjust when choice is cliked
+5. Have field/method to set skips to choices
+   - Ability to calculate all questions that were skipped
+     and adust tests accordingly
+6. Create test writting method through gui for circumstances
+   where App cant figure out test automatically
