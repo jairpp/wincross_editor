@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 class Wincross extends React.Component {
   render() {
-    // console.log("WC Render");
+    // console.log("Props: ", this.props);
     let wcChecks = WC.initializeTest(this.props);
     let check = wcChecks.test;
     let reverseCheck = wcChecks.reverseTest;

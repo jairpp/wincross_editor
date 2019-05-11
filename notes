@@ -12,3 +12,45 @@
      and adust tests accordingly
 6. Create test writting method through gui for circumstances
    where App cant figure out test automatically
+
+   class wcInitData {
+  constructor(qData) {
+    // Set Current Q Number
+    this.currentQNumber = qData.qNumber;
+
+    // Set Current Question's Info
+    this.currentQuestion = setCurrentQuestion(qData.questions);
+
+    // Set Current Choice's Info
+    this.currentChoices = setCurrentChoices(qData.choices);
+
+    // Find the choice type for this question
+    this.currentQType = setChoiceType(this.currentQuestion);
+
+    // Set initial passChoices
+    this.passChoices = setPassChoices(currentChoices);
+
+    // Set data length of choices ie. 1/10:3 (:3 is the data length)
+    this.dataLength = setDataLength(currentChoices);
+
+    // Set current card number
+    this.currentCardNum = setCurrentCardNum(currentChoices);
+
+    // Set current column number
+    this.firstColumnNum = getColNum(currentChoices);
+  }
+
+  // Set tests prefix/suffix based on question type
+  directByQType() {
+    switch (currentQType) {
+      case "Single-Choice":
+        let SCresults = SC.createTests(this.qData.project);
+        return SCresults;
+
+      default:
+        alert(
+          `ERROR: Unable to detect question type for question ${currentQNumber}`
+        );
+    }
+  }
+}

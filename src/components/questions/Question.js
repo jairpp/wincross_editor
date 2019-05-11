@@ -7,7 +7,7 @@ import "../../css/main.css";
 
 class Question extends React.Component {
   render() {
-    console.log("Questions Render");
+    // console.log("Questions Render");
     const choices = this.props.choices.map((choice, ind) => {
       let allChoices = choice.map((indChoice, ind) => {
         if (this.props.qNumber === indChoice.qNumber) {
