@@ -112,7 +112,7 @@ export const areLocationsConsecutive = choices => {
   let consecutive = false;
   // Get all locations out of passChoices object and sort them
   let allLocations = choices
-    .map(choice => choice.cLocation)
+    .map(choice => parseInt(choice.cLocation, 10))
     .sort(function(a, b) {
       return a - b;
     });

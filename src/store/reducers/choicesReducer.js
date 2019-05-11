@@ -7,7 +7,7 @@ const initialState = [
       cText: "q1 c1 choice text",
       cCard: 1,
       cCol: 10,
-      cLocation: 101,
+      cLocation: "01",
       isTermPoint: false
     },
     {
@@ -15,7 +15,7 @@ const initialState = [
       cText: "q1 c2 choice text",
       cCard: 1,
       cCol: 10,
-      cLocation: 102,
+      cLocation: "02",
       isTermPoint: false
     },
     {
@@ -23,7 +23,7 @@ const initialState = [
       cText: "q1 c3 choice text",
       cCard: 1,
       cCol: 10,
-      cLocation: 103,
+      cLocation: "03",
       isTermPoint: false
     }
   ],
@@ -33,7 +33,7 @@ const initialState = [
       cText: "q2 c1 choice text",
       cCard: 1,
       cCol: 11,
-      cLocation: 101,
+      cLocation: "01",
       isTermPoint: false
     },
     {
@@ -41,7 +41,7 @@ const initialState = [
       cText: "q2 c2 choice text",
       cCard: 1,
       cCol: 11,
-      cLocation: 102,
+      cLocation: "02",
       isTermPoint: false
     },
     {
@@ -49,7 +49,7 @@ const initialState = [
       cText: "q2 c3 choice text",
       cCard: 1,
       cCol: 11,
-      cLocation: 103,
+      cLocation: "03",
       isTermPoint: false
     }
   ],
@@ -59,7 +59,7 @@ const initialState = [
       cText: "q3 c1 choice text",
       cCard: 1,
       cCol: 12,
-      cLocation: 101,
+      cLocation: "01",
       isTermPoint: false
     },
     {
@@ -67,7 +67,7 @@ const initialState = [
       cText: "q3 c2 choice text",
       cCard: 1,
       cCol: 12,
-      cLocation: 102,
+      cLocation: "02",
       isTermPoint: false
     },
     {
@@ -75,7 +75,7 @@ const initialState = [
       cText: "q3 c3 choice text",
       cCard: 1,
       cCol: 12,
-      cLocation: 103,
+      cLocation: "03",
       isTermPoint: false
     }
   ]
