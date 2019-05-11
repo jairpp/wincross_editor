@@ -19,14 +19,6 @@ export const SUFF = "Suffix";
 
 /* ----- Initialize all necessary data to contruct test for the current question iteration  ------*/
 
-// **** NOTE: Right now all functions to create SC test is in 1 file.  However if testing
-// with a base for a suffix that is a different question type, that quesiton will need to
-// be routed to a different file and return only the data needed for writing that test
-// suffix.  Need to refactor SC file and all other routes in future to accept the
-// follwoing as arguments and return only necessary values:
-// (appropriate question data, return data needed ie. prefix/suffix)
-// **********************************************************************
-
 export const initializeTest = allData => {
   let testSuffix = null;
   let testPrefix = null;
@@ -41,11 +33,32 @@ export const initializeTest = allData => {
   // Find Previous Question Indedx # to set base Suffix
   const prevQNumber = findPrevIndexNum(wcObjPrefix.currentQIndex, allData);
 
-  // Create wcObj if a previous question exists in order to create a test suffix
   if (prevQNumber) {
-    wcObjSuffix = new wcInitData(allData, prevQNumber);
-    // route suffix data by question type and pass WC instance & proj. info
-    testSuffix = directByQType(allData.project, wcObjSuffix, SUFF);
+    // If project is set to use the previous question as it's basic base
+    if (allData.project.systemBaseType === "PREVIOUS") {
+      // Create wcObj if a previous question exists in order to create a test suffix
+      wcObjSuffix = new wcInitData(allData, prevQNumber);
+
+      // route suffix data by question type and pass WC instance & proj. info
+      testSuffix = directByQType(allData.project, wcObjSuffix, SUFF);
+    }
+    // Else if project is set to use Term points as basic base
+    else if (allData.project.systemBaseType === "TERM") {
+      // Find closest question with term point that is relevant to current question
+      const closestTermPointQNumber = findClosestTermPoint(allData);
+      console.log(closestTermPointQNumber);
+      // If found set wcObj with that qNumber and route bases on that question type
+      if (closestTermPointQNumber) {
+        wcObjSuffix = wcObjSuffix = new wcInitData(
+          allData,
+          closestTermPointQNumber
+        );
+        testSuffix = directByQType(allData.project, wcObjSuffix, SUFF);
+      } else {
+        // If no previous TERM points found use vendors as base
+        testSuffix = setVendorSuffix(allData.project.vendors);
+      }
+    }
   } else {
     // If no prev question to use as suffix base, use vendor
     testSuffix = setVendorSuffix(allData.project.vendors);
@@ -65,7 +78,7 @@ class wcInitData {
 
     // Set Index number (position) within questions reducer
     // This is used to look up previous question choices as bases
-    this.currentQIndex = setQIndexNum(this.currentQNumber, qData);
+    this.currentQIndex = getQIndexNum(this.currentQNumber, qData);
 
     // Set Current Question's Info
     this.currentQuestion = setCurrentQuestion(
@@ -168,7 +181,7 @@ const getColNum = choices => {
 };
 
 // Set question index number in questions reducer
-const setQIndexNum = (currentQNumber, allData) => {
+const getQIndexNum = (currentQNumber, allData) => {
   for (let i = 0; i < allData.questions.length; i++) {
     if (allData.questions[i].qNumber === currentQNumber) {
       return i;
@@ -217,6 +230,23 @@ const findPrevIndexNum = (currentQIndex, allData) => {
   return currentQIndex > 0
     ? allData.questions[currentQIndex - 1].qNumber
     : null;
+};
+
+export const findClosestTermPoint = allData => {
+  // Get current qIndex
+  let qIndex = getQIndexNum(allData.qNumber, allData) - 1;
+
+  // Traverse choices arrays backwards from current qNumber until a term point is found
+  for (let i = qIndex; i >= 0; i--) {
+    for (let j = 0; j <= allData.choices[i].length - 1; j++) {
+      let choice = allData.choices[i][j];
+      if (choice.isTermPoint) {
+        console.log("HAS TERM:", choice);
+        return choice.qNumber;
+      }
+    }
+  }
+  return null;
 };
 
 /* ------------------------ END Wincross helper functions ------------------------ */

@@ -3,7 +3,7 @@ export const setVendorSuffix = vendors => {
   let vendorPadding = vendors.length > 9 ? "0" : "";
   let vendorLength = vendors.length > 9 ? ":2" : "";
   let vendorDash = vendors.length > 1 ? "-" : "";
-  let firstVendorKey = Object.keys(vendors[0])[0];
+  // let firstVendorKey = Object.keys(vendors[0])[0];
   let lastVendorKey = Object.keys(vendors[Object.keys(vendors).length - 1])[0];
   let vendorRanges = [
     vendors[0]["MON"],

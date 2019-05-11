@@ -4,15 +4,16 @@ const initialState = {
   jobNumber: 3070019,
   companyCode: "000101",
   bases: [],
+  systemBaseType: "TERM", // Set reverse test as PREVIOUS for previous question or TERM for nearest term point
   vendors: [
     {
-      MON: 1
+      MON: "1"
     },
     {
-      CX: 2
+      CX: "2"
     },
     {
-      MarketCube: 3
+      MarketCube: "3"
     }
   ]
 };

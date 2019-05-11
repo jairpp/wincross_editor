@@ -1,56 +1,16 @@
 1. Get choice text to be clickable - X
-2. Get Wincross test logic working
-   - Have tests change on click match the correct WC check qNumber
-   - Have bases be included - O
+2. Get Wincross test logic working for Single Choice
+   - Have tests change on click match the correct WC check qNumber - X
    - Set ability to toggle between bases and previous questions
+   - Have bases be included 
    - Account for skips with bases or previous questions as suffixes
    - Set question type (singlge/multi/CR etc) - X
-3. Display Wincross Checks next to each question
-4. Have wincross checks adjust when choice is cliked
-5. Have field/method to set skips to choices
+
+   - Repeat above for all question types
+
+
+3. Have field/method to set skips to choices
    - Ability to calculate all questions that were skipped
      and adust tests accordingly
-6. Create test writting method through gui for circumstances
+4. Create test writting method through gui for circumstances
    where App cant figure out test automatically
-
-   class wcInitData {
-  constructor(qData) {
-    // Set Current Q Number
-    this.currentQNumber = qData.qNumber;
-
-    // Set Current Question's Info
-    this.currentQuestion = setCurrentQuestion(qData.questions);
-
-    // Set Current Choice's Info
-    this.currentChoices = setCurrentChoices(qData.choices);
-
-    // Find the choice type for this question
-    this.currentQType = setChoiceType(this.currentQuestion);
-
-    // Set initial passChoices
-    this.passChoices = setPassChoices(currentChoices);
-
-    // Set data length of choices ie. 1/10:3 (:3 is the data length)
-    this.dataLength = setDataLength(currentChoices);
-
-    // Set current card number
-    this.currentCardNum = setCurrentCardNum(currentChoices);
-
-    // Set current column number
-    this.firstColumnNum = getColNum(currentChoices);
-  }
-
-  // Set tests prefix/suffix based on question type
-  directByQType() {
-    switch (currentQType) {
-      case "Single-Choice":
-        let SCresults = SC.createTests(this.qData.project);
-        return SCresults;
-
-      default:
-        alert(
-          `ERROR: Unable to detect question type for question ${currentQNumber}`
-        );
-    }
-  }
-}
