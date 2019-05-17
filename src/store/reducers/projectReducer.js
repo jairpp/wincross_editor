@@ -1,10 +1,12 @@
+import * as actions from "../actions";
+
 const initialState = {
   title: "Test Project 1",
   projectCode: 1234567,
   jobNumber: 3070019,
   companyCode: "000101",
   bases: [],
-  systemBaseType: "TERM", // Set reverse test as PREVIOUS for previous question or TERM for nearest term point
+  systemBaseType: "PREVIOUS", // Set reverse test as PREVIOUS for previous question or TERM for nearest term point
   vendors: [
     {
       MON: "1"
@@ -19,7 +21,14 @@ const initialState = {
 };
 
 const projectReducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case actions.TOGGLE_SYSTEM_BASE:
+      let tmpState = state;
+      return Object.assign({}, tmpState, { systemBaseType: action.baseType });
+
+    default:
+      return state;
+  }
 };
 
 export default projectReducer;

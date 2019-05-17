@@ -8,7 +8,6 @@ class Choices extends React.Component {
   };
 
   render() {
-    console.log("Choices Render: ", this.props.data);
     return (
       <div className="choice-container">
         <label>

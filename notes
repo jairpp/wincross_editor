@@ -1,8 +1,10 @@
+/*
+
 1. Get choice text to be clickable - X
 2. Get Wincross test logic working for Single Choice
    - Have tests change on click match the correct WC check qNumber - X
-   - Set ability to toggle between bases and previous questions
-   - Have bases be included 
+   - Set ability to toggle between bases and previous questions - X
+   - Have bases be included - X
    - Account for skips with bases or previous questions as suffixes
    - Set question type (singlge/multi/CR etc) - X
 
@@ -14,3 +16,5 @@
      and adust tests accordingly
 4. Create test writting method through gui for circumstances
    where App cant figure out test automatically
+
+*/

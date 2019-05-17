@@ -5,3 +5,11 @@ export const toggle_term_point = choiceData => {
     choiceData
   };
 };
+
+export const TOGGLE_SYSTEM_BASE = "TOGGLE_SYSTEM_BASE";
+export const toggle_system_base = baseType => {
+  return {
+    type: TOGGLE_SYSTEM_BASE,
+    baseType
+  };
+};

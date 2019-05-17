@@ -1,18 +1,13 @@
 import React from "react";
-import Question from "./components/questions/Question";
 import { connect } from "react-redux";
+
+import Project from "./components/Project/Project";
 
 class App extends React.Component {
   render() {
-    const questions = this.props.questions.map((el, ind) => {
-      return (
-        <Question qText={el.qText} qNumber={el.qNumber} key={el.qNumber} />
-      );
-    });
-
     return (
       <div id="app" className="container">
-        {questions}
+        <Project />
       </div>
     );
   }

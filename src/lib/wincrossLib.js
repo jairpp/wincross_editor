@@ -2,15 +2,6 @@
 import * as SC from "./wcSingleChoice";
 import { setVendorSuffix } from "./wcVendors";
 
-// Store all question/choice info for current question
-export let currentQuestion = null; // Current Question Object
-export let currentChoices = null; // All Current Choices for Question
-export let currentQNumber = null; // Current Mapped Question Number
-export let currentQType = null; // Single, Multi, Custom Rating(CR)
-export let dataLength = null; // 1/10:3 (:3 is data length)
-export let currentCardNum = null; // 1/10 (1) is currentCardNum
-export let firstColumnNum = null; // The First Choices Column # ie. 1/10 (10) is the firstColumnNum
-
 // PassChoices = choices that are not set as term points
 export let passChoices = null;
 
@@ -46,7 +37,6 @@ export const initializeTest = allData => {
     else if (allData.project.systemBaseType === "TERM") {
       // Find closest question with term point that is relevant to current question
       const closestTermPointQNumber = findClosestTermPoint(allData);
-      console.log(closestTermPointQNumber);
       // If found set wcObj with that qNumber and route bases on that question type
       if (closestTermPointQNumber) {
         wcObjSuffix = wcObjSuffix = new wcInitData(
@@ -106,14 +96,17 @@ class wcInitData {
 
     // Set current column number
     this.firstColumnNum = getColNum(this.currentChoices);
+
+    // Set bases for current question
+    this.bases = getBases(qData, this.currentQIndex);
   }
 }
 
 // Set tests prefix/suffix based on question type
-const directByQType = (project, qDataObj, prefixOrSuffix) => {
-  switch (qDataObj.currentQType) {
+const directByQType = (project, wcObj, prefixOrSuffix) => {
+  switch (wcObj.currentQType) {
     case "Single-Choice":
-      let SCresults = SC.createTests(project, qDataObj, prefixOrSuffix);
+      let SCresults = SC.createTests(project, wcObj, prefixOrSuffix);
       return SCresults;
 
     default:
@@ -241,7 +234,6 @@ export const findClosestTermPoint = allData => {
     for (let j = 0; j <= allData.choices[i].length - 1; j++) {
       let choice = allData.choices[i][j];
       if (choice.isTermPoint) {
-        console.log("HAS TERM:", choice);
         return choice.qNumber;
       }
     }
@@ -249,4 +241,19 @@ export const findClosestTermPoint = allData => {
   return null;
 };
 
+export const getBases = (qData, currentQIndex) => {
+  return qData.questions[currentQIndex].bases;
+};
+
 /* ------------------------ END Wincross helper functions ------------------------ */
+
+// String all bases for a question together with their operator ie(AND, AND NOT, etc)
+export const parseBases = bases => {
+  let parsedBases = bases
+    .map(base => {
+      return ` ${base.operator} ${base.location}`;
+    })
+    .join(" ");
+
+  return parsedBases;
+};
