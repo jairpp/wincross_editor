@@ -23,4 +23,10 @@ class Choices extends React.Component {
   }
 }
 
-export default connect()(Choices);
+const mapStateToProps = state => ({
+  questions: state.questions,
+  project: state.project,
+  choices: state.choices
+});
+
+export default connect(mapStateToProps)(Choices);

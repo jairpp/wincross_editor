@@ -6,21 +6,30 @@ const initialState = [
     parsedNum: 1,
     qText: "This is the question text for Q1",
     CRranges: [],
-    bases: [{ operator: "AND", location: "1/15(3)" }]
+    bases: [],
+    preBases: []
   },
   {
     qNumber: "Q2",
     parsedNum: 2,
     qText: "This is the question text for Q2",
     CRranges: [],
-    bases: []
+    bases: [
+      { operator: "AND", location: "1/15(3)" },
+      { operator: "AND", location: "1/15(5)" }
+    ],
+    preBases: []
   },
   {
     qNumber: "Q3",
     parsedNum: 3,
     qText: "This is the question text for Q3",
     CRranges: [],
-    bases: []
+    bases: [],
+    preBases: [
+      { operator: "AND", location: "1/21(3)" },
+      { operator: "AND", location: "1/43(5)" }
+    ]
   }
 ];
 

@@ -1,5 +1,5 @@
 import React from "react";
-import * as WC from "../../lib/wincrossLib";
+import * as WC from "../../lib/wcInit";
 import { connect } from "react-redux";
 
 class Wincross extends React.Component {
@@ -20,6 +20,7 @@ class Wincross extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  questions: state.questions,
   choices: state.choices,
   project: state.project
 });
