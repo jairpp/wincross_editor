@@ -157,3 +157,25 @@ export const parseBases = bases => {
 
   return parsedBases;
 };
+
+// Get range of questions using "fromQNum" and "toQNum"
+export const getListOfQNumbersByRange = (fromQNum, toQNum, allData) => {
+  const startIndex = getQIndexNum(fromQNum, allData);
+  const endIndex = getQIndexNum(toQNum, allData);
+
+  console.log(fromQNum, startIndex, toQNum, endIndex);
+  // Throw error if range is inaccurate
+  if (startIndex >= endIndex) {
+    console.log('The "From" range # must be less than the "To" range #.');
+    return;
+  }
+  // Store question #'s
+  let qNumberArr = [];
+
+  // Loop through questions using the start and ending indices
+  for (let i = startIndex; i <= endIndex; i++) {
+    qNumberArr.push(allData.questions[i].qNumber); // Push QNumbers into array
+  }
+
+  return qNumberArr;
+};

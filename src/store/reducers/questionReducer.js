@@ -7,7 +7,8 @@ const initialState = [
     qText: "This is the question text for Q1",
     CRranges: [],
     bases: [],
-    preBases: []
+    preBases: [],
+    skipBase: []
   },
   {
     qNumber: "Q2",
@@ -18,7 +19,8 @@ const initialState = [
       { operator: "AND", location: "1/15(3)" },
       { operator: "AND", location: "1/15(5)" }
     ],
-    preBases: []
+    preBases: [],
+    skipBase: []
   },
   {
     qNumber: "Q3",
@@ -29,7 +31,8 @@ const initialState = [
     preBases: [
       { operator: "AND", location: "1/21(3)" },
       { operator: "AND", location: "1/43(5)" }
-    ]
+    ],
+    skipBase: [{ operator: "AND", skipOriginQNumber: "Q1" }]
   }
 ];
 

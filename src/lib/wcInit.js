@@ -78,6 +78,8 @@ export const initializeTest = allData => {
   // Parse the prefix bases
   parsedPreBases = wcObjPrefix ? wcFuncs.parseBases(wcObjPrefix.preBases) : "";
 
+  //  Handle any skip bases
+
   // Get the joined bases from parsedPreBases and apend to prefix
   const combinedPrefix = parsedPreBases
     ? `{${testPrefix}${parsedPreBases}}`
